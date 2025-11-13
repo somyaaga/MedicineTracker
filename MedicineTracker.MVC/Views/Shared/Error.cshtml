@@ -1,0 +1,14 @@
+﻿@model MedicineTracker.MVC.Models.ErrorViewModel
+@{
+    ViewData["Title"] = "Error";
+}
+
+<h1 class="text-danger">Oops! Something went wrong.</h1>
+<h3>Please try again later or contact support.</h3>
+
+@if (Model?.ShowRequestId ?? false)
+{
+    <p>
+        <strong>Request ID:</strong> <code>@Model.RequestId</code>
+    </p>
+}

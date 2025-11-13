@@ -1,0 +1,53 @@
+﻿@model MedicineTracker.MVC.Models.Medicine
+
+<h2>Add Medicine</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label>Full Name</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Notes</label>
+        <input asp-for="Notes" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Expiry Date</label>
+        <input asp-for="Expiry" type="date" class="form-control" />
+        <span asp-validation-for="Expiry" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Quantity</label>
+        <input asp-for="Quantity" type="number" class="form-control" />
+        <span asp-validation-for="Quantity" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Price</label>
+        <input asp-for="Price" type="number" step="0.01" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Brand</label>
+        <input asp-for="Brand" class="form-control" />
+        <span asp-validation-for="Brand" class="text-danger"></span>
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-success">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+
+    @if (ViewBag.Error != null)
+    {
+        <p class="text-danger">@ViewBag.Error</p>
+    }
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

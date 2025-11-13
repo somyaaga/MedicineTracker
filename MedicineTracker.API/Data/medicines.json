@@ -1,0 +1,65 @@
+[
+  {
+    "Id": 1,
+    "Name": "Paracetamol",
+    "Notes": "for fever",
+    "Expiry": "2025-11-12T00:00:00",
+    "Quantity": 10,
+    "Price": 10.2,
+    "Brand": "ABC"
+  },
+  {
+    "Id": 3,
+    "Name": "Dolo",
+    "Notes": "fever",
+    "Expiry": "2025-11-12T00:00:00",
+    "Quantity": 7,
+    "Price": 50,
+    "Brand": "abc"
+  },
+  {
+    "Id": 4,
+    "Name": "az900",
+    "Notes": "j",
+    "Expiry": "2025-11-29T00:00:00",
+    "Quantity": 45,
+    "Price": 89,
+    "Brand": "gb"
+  },
+  {
+    "Id": 5,
+    "Name": "s",
+    "Notes": "s",
+    "Expiry": "2026-01-29T00:00:00",
+    "Quantity": 3,
+    "Price": 89,
+    "Brand": "ss3"
+  },
+  {
+    "Id": 6,
+    "Name": "k",
+    "Notes": "ff",
+    "Expiry": "2026-03-12T00:00:00",
+    "Quantity": 5,
+    "Price": 34,
+    "Brand": "d"
+  },
+  {
+    "Id": 7,
+    "Name": "7uu",
+    "Notes": "kk",
+    "Expiry": "2026-05-07T00:00:00",
+    "Quantity": 88,
+    "Price": 90,
+    "Brand": "jj"
+  },
+  {
+    "Id": 8,
+    "Name": "asprin",
+    "Notes": "headache",
+    "Expiry": "2026-02-07T00:00:00",
+    "Quantity": 78,
+    "Price": 56,
+    "Brand": "dd"
+  }
+]

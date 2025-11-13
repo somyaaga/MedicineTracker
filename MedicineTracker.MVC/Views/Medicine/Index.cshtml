@@ -1,0 +1,53 @@
+﻿@model List<MedicineTracker.MVC.Models.Medicine>
+
+<h2>Medicines</h2>
+<a class="btn btn-primary" asp-action="Create">Add Medicine</a>
+<br />
+<br />
+
+<form method="get" asp-controller="Medicine" asp-action="Search" class="mb-3">
+    <div class="input-group">
+        <input type="text" name="searchTerm" value="@ViewBag.searchTerm" placeholder="Search by name..." class="form-control" />
+        <button type="submit" class="btn btn-primary">Search</button>
+        @if (!string.IsNullOrEmpty(ViewBag.searchTerm))
+        {
+            <a asp-action="Index" class="btn btn-secondary">Clear</a>
+        }
+        
+    </div>
+</form>
+<br/><br/>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Expiry Date</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Brand</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            var bgColor = "";
+            if ((item.Expiry - DateTime.Now).TotalDays < 30)
+                bgColor = "background-color:red;color:white;";
+            else if (item.Quantity < 10)
+                bgColor = "background-color:yellow;";
+
+            <tr style="@bgColor">
+                <td>@item.Name</td>
+                <td>@item.Expiry.ToShortDateString()</td>
+                <td>@item.Quantity</td>
+                <td>@item.Price</td>
+                <td>@item.Brand</td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (!string.IsNullOrEmpty(ViewBag.Message))
+{
+    <div class="alert alert-warning text-center mt-3">@ViewBag.Message</div>
+}
