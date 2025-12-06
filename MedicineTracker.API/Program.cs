@@ -1,10 +1,16 @@
 using MedicineTracker.API.Interface;
+using MedicineTracker.API.Models;
 using MedicineTracker.API.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddScoped<IMedicine, MedicineServices>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+
+builder.Services.AddDbContext<MedDBContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("defaultConnection")));
 
 // Add CORS
 builder.Services.AddCors(options =>

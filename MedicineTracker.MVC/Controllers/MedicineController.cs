@@ -15,7 +15,13 @@ namespace MedicineTracker.MVC.Controllers
         public async Task<IActionResult> Index()  //getting all data
         {
             var medicines = await _medApiService.GetAllMedicinesAsync();
-            return View(medicines);
+            if (!medicines.Any() || medicines == null)
+            {
+                ViewBag.Message = "No medicines added yet.";
+                return View(new List<Medicine>());
+            }
+            else
+                return View(medicines);
         }
 
         public  async Task<IActionResult> Search(string searchTerm)  //searching data

@@ -7,16 +7,18 @@ namespace MedicineTracker.MVC.Services
     {
         private readonly HttpClient _httpClient;
 
-        new List<Medicine> med = new List<Medicine>();
+        List<Medicine> med = new List<Medicine>();
         public MedAPIService(HttpClient httpClient)
         {
             _httpClient = httpClient;
-            _httpClient.BaseAddress = new Uri("https://localhost:7127/api/");
+           // _httpClient.BaseAddress = new Uri("https://localhost:7127/api/");
         }
         public async Task<List<Medicine>> GetAllMedicinesAsync()
         {
             var response = await _httpClient.GetAsync("medicine");
-            response.EnsureSuccessStatusCode();
+            //response.EnsureSuccessStatusCode();
+            if (!response.IsSuccessStatusCode)
+                return med;
             var medicines = await response.Content.ReadFromJsonAsync<List<Medicine>>();
             return medicines ?? med;
         }
