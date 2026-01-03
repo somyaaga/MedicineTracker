@@ -2,9 +2,9 @@
 
 namespace MedicineTracker.API.Interface
 {
-    public interface IMedicine
-    {
+   public interface IMedicine
+   {
         List<Medicine> GetAllMedicines();
         void AddMedicine(Medicine med);
-    }
+   }
 }

@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using MedicineTracker.API.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace MedicineTracker.API.Models;
+namespace MedicineTracker.API.Data;
 
 public partial class MedDBContext : DbContext
 {
@@ -15,18 +16,39 @@ public partial class MedDBContext : DbContext
     {
     }
 
+    public virtual DbSet<Medicine> Medicines { get; set; }
+
     public virtual DbSet<RefreshToken> RefreshTokens { get; set; }
 
     public virtual DbSet<Role> Roles { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=localhost;Database=Mylocal;Trusted_Connection=True;TrustServerCertificate=True");
+//    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+////#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+//        => optionsBuilder.UseSqlServer("ConnectionStrings");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Medicine>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Medicine__3214EC072E461B3A");
+
+            entity.ToTable("Medicine");
+
+            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.Brand)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Name)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Notes)
+                .HasMaxLength(255)
+                .IsUnicode(false);
+            entity.Property(e => e.Price).HasColumnType("decimal(18, 0)");
+        });
+
         modelBuilder.Entity<RefreshToken>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__RefreshT__3214EC075B87335B");

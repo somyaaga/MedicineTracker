@@ -11,7 +11,7 @@ namespace MedicineTracker.API.Controllers
     public class MedicineController : ControllerBase
     {
         public readonly IMedicine _medicineService;
-
+       
         public MedicineController(IMedicine medservice)
         {
             _medicineService = medservice;
@@ -24,9 +24,9 @@ namespace MedicineTracker.API.Controllers
             if (!medicines.Any() || medicines==null)
                 return NotFound("No Medicines yet. Add some!");
             else
-                return Ok(medicines);
+            return Ok(medicines);
         }
-
+         
         [HttpGet("Search")]
         public IActionResult SearchMedicine(string? searchTerm)
         {

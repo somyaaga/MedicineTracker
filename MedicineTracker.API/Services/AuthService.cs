@@ -3,6 +3,7 @@ using System.Security.Cryptography;
 using System.Text;
 using MedicineTracker.API.Interface;
 using MedicineTracker.API.DTO;
+using MedicineTracker.API.Data;
 
 namespace MedicineTracker.API.Services
 {
