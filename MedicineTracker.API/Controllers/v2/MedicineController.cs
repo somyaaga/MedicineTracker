@@ -1,12 +1,16 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MedicineTracker.API.Interface;
+using Asp.Versioning;
 using MedicineTracker.API.Models;
 using System.Diagnostics.Eventing.Reader;
+using Azure.Messaging;
 
-namespace MedicineTracker.API.Controllers
+namespace MedicineTracker.API.Controllers.v2
 {
-    [Route("api/[controller]")]
+    [Route("api/v{version:ApiVersion}/[controller]")]
+    [Route("api/Medicine")]
+    [ApiVersion("2.0")]
     [ApiController]
     public class MedicineController : ControllerBase
     {
@@ -18,13 +22,19 @@ namespace MedicineTracker.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult FetchAllMedicines()
+        public ActionResult FetchAllMedicines()
         {
+            
             var medicines = _medicineService.GetAllMedicines();
             if (!medicines.Any() || medicines==null)
                 return NotFound("No Medicines yet. Add some!");
             else
-            return Ok(medicines);
+            return Ok( new
+            {
+                Message = "Medicines v2 retrieved successfully.",
+                Medicines = medicines
+            }
+               );
         }
          
         [HttpGet("Search")]
